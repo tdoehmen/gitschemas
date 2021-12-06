@@ -24,16 +24,18 @@ The file-sizes of all SQL scripts containing the desired keywords, are distribut
 It is Interesting to note is that there are no files >400 KB. Maybe GitHub does not perform language detection on files >400 KB.
 
 The crawler performs the following three steps: 
+
 (1) crawl a list of URLs 
+
 (2) download files based on the list of URLs 
+
 (3) deduplicate the downloaded files based on their [md5](https://docs.python.org/3/library/hashlib.html) file hash 
+
 
 ## SQL Parser
 To facilitate downstream use cases, we want to extract structured schema information from the crawled SQL files. This includes things such as table names, column names, primary keys, and foreign keys including their reference table and their reference column names. However, the extraction is no simple feat, because the crawled SQL files may use different SQL dialects, contain comments, be incomplete, and/or contain syntactical errors. 
 
 We tried different parsing options available in Python, including the libraries [sqlparse (Non-validating)](https://github.com/andialbrecht/sqlparse), [mysqlparse (MySQL)](https://github.com/seporaitis/mysqlparse), [pglast (Postgres)](https://github.com/lelit/pglast), and [queryparser (MySQL/Postrgres)](https://github.com/aipescience/queryparser). Untimately, we found`pglast`to provide the best tradeoff between conveniece and parsing success (~16%), leaving us with a total of 61,038 schemas (s. Table).
-
-Important Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. Since not every SQL-database vedor open sources its parser, it is not feasible to simply trial-and-error for all possible dialects. Maximizing the parsing success rate,_without knowing which particular database system the query was written for_, could be an interesting project in an of itself. Any useful pointers regarding this are highly apprecited.
 
 | Description | # of files |
 |-------|------------|
@@ -41,6 +43,8 @@ Important Note: There should be quite some room for improvement in terms of the 
 | Parsable with [pglast](https://pypi.org/project/pglast/)  | 61,038 (16.36%)  |
 
 `pglast` extracts an abstract syntax tree ([AST](https://pglast.readthedocs.io/en/v3/ast.html)) from the SQL script, which we ultimately translate to JSON to facilitate further analysis.
+
+Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. Since not every SQL-database vedor open sources its parser, it is not feasible to simply trial-and-error for all possible dialects. Maximizing the parsing success rate,_without knowing which particular database system the query was written for_, could be an interesting project in an of itself. Any useful pointers regarding this are highly apprecited.
 
 ## Schema Data
 The parsing step results in a JSON file which looks as follows. The dataset can be downloaded here:
