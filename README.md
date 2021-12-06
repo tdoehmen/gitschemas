@@ -10,6 +10,7 @@ The GitHub SQL Crawler was built using the [GitHub Search API](https://docs.gith
 The GitHub Search index contains ~7.8M SQL files, out of which ~0.7M contain the "CREATE TABLE FOREIGN KEY" keywords (s. Table).
 
 | Query  | # Search Reults (Nov. 2021)  |
+|-------|------------|
 | language: SQL  | ~7.8M  |
 | keywords: "CREAT TABLE FOREIGN KEY" language: SQL  | ~ 0.8M  |
 | keywords: "CREAT TABLE FOREIGN KEY" language: SQL (successfully downloaded) | ~ 0.7M  |
@@ -34,6 +35,7 @@ We tried different parsing options available in Python, including the libraries 
 Important Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. Since not every SQL-database vedor open sources its parser, it is not feasible to simply trial-and-error for all possible dialects. Maximizing the parsing success rate,_without knowing which particular database system the query was written for_, could be an interesting project in an of itself. Any useful pointers regarding this are highly apprecited.
 
 | Description | # of files |
+|-------|------------|
 | All SQL files  | 373,156  |
 | Parsable with [pglast](https://pypi.org/project/pglast/)  | 61,038 (16.36%)  |
 
@@ -42,7 +44,8 @@ Important Note: There should be quite some room for improvement in terms of the 
 ## Schema Data
 The parsing step results in a JSON file which looks as follows. The dataset can be downloaded here:
 
-`{'schema_000001':
+```
+{'schema_000001':
 	{'INFO': {
 		'user': 'user_xxx',
 		'url': 'https://github.com/2212khushboo/Project/blob/5a6746d../db/sql/tables.sql?raw=true\n',
@@ -72,12 +75,14 @@ The parsing step results in a JSON file which looks as follows. The dataset can 
 		 'REFERENCE_TABLE': 'state',
 		 'REFERENCE_COLUMN': ['id']}]}}},
    'schema_000002': {....}
-}`
+}
+```
 
 
 The following section gives an overview of some of the properties of the dataset. 
 
 | Entity | # |
+|-------|------------|
 | schemas | 61,038 |
 | tables | 393,653 |
 | columns| 2,544,164 |
@@ -105,6 +110,8 @@ The following section gives an overview of some of the properties of the dataset
 Apart from the raw JSON data, we derived a tabular data set particularly for the foreign key detection problem. The dataset contains only those tables, that have a non-composite-key foreign key relation to another table. For tables that have multiple foreign key relations, we added one line for every relation.  It has the following schema and can be downloaded here:
 
 |schema|table_name_a|table_name_b|columns_a|columns_b|primary_keys_a|primary_keys_b|key_a|key_b|
+|-------|------------|----|------|------|-------|--------|------|------|
 |000361_eventplanline.sql|eventplanline|resourcetbl|planno, lineno, locno, resno, timestart, time...||id|id|resno|resno|
 |000376_create_tables.derby.sql|db_category|db_category|id, name, parent_id|id, name, parent_id|id|id|parent_id|id|
-| total rows: 124605 |
+
+total rows: 124605
