@@ -1,0 +1,2 @@
+License Information
+The SQL scripts might be licensed under different licenses as inherited from the GitHub repositories that the SQL scripts were retrieved from. The URL of each table is contained in the metadata (sqlfiles_urls.csv). We suggest to use GitHub’s License API to retrieve the license associated with each SQL files to understand what restrictions apply to each file.

@@ -5,6 +5,12 @@ This repository contains scripts to crawl SQL-files from GitHub, parse them and 
 
 Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and aling them with their concrete research objective.
 
+## Download Links
+GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
+GitHub SQL Files Dataset (Upon Request)
+Database Schema Dataset ([JSON](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing))
+Foreign Key Detection Training Dataset ([CSV](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing), [Parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing))
+
 ## Crawler
 The GitHub SQL Crawler was built using the [GitHub Search API](https://docs.github.com/en/rest/reference/search). We search GitHub for SQL code that contains a CREATE TABLE and a FOREIGN KEY statement to make sure we retrieve SQL scripts which actually define a schema.
 
@@ -29,7 +35,7 @@ The crawler performs the following three steps:
 
 (2) download files based on the list of URLs 
 
-(3) deduplicate the downloaded files based on their [md5](https://docs.python.org/3/library/hashlib.html) file hash 
+(3) deduplicate the downloaded files based on their [sha256](https://docs.python.org/3/library/hashlib.html) hash 
 
 
 ## SQL Parser
@@ -47,7 +53,7 @@ We tried different parsing options available in Python, including the libraries 
 Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. Since not every SQL-database vedor open sources its parser, it is not feasible to simply trial-and-error for all possible dialects. Maximizing the parsing success rate,_without knowing which particular database system the query was written for_, could be an interesting project in an of itself. Any useful pointers regarding this are highly apprecited.
 
 ## Schema Data
-The parsing step results in a JSON file which looks as follows. The dataset can be downloaded here:
+The parsing step results in a JSON file which looks as follows. The dataset can be downloaded [here](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing):
 
 ```
 {'schema_000001':
@@ -112,7 +118,7 @@ The following section gives an overview of some of the properties of the dataset
 
 ![1b11d64f92e09062ba46306b84535370.png](imgs/1b11d64f92e09062ba46306b84535370.png)
 
-Apart from the raw JSON data, we derived a tabular data set particularly for the foreign key detection problem. The dataset contains only those tables, that have a non-composite-key foreign key relation to another table. For tables that have multiple foreign key relations, we added one line for every relation.  It has the following schema and can be downloaded here:
+Apart from the raw JSON data, we derived a tabular data set particularly for the foreign key detection problem. The dataset contains only those tables, that have a non-composite-key foreign key relation to another table. For tables that have multiple foreign key relations, we added one line for every relation.  It has the following schema and can be downloaded as [csv](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing) and [parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing) file:
 
 |schema|table_name_a|table_name_b|columns_a|columns_b|primary_keys_a|primary_keys_b|key_a|key_b|
 |-------|------------|----|------|------|-------|--------|------|------|
