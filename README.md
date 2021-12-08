@@ -6,13 +6,10 @@ This repository contains scripts to crawl SQL-files from GitHub, parse them and 
 Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and aling them with their concrete research objective.
 
 ## Download Links
-GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
-
-GitHub SQL Files Dataset (Upon Request)
-
-Database Schema Dataset ([JSON](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing))
-
-Foreign Key Detection Training Dataset ([CSV](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing), [Parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing))
+- GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
+- GitHub SQL Files Dataset (Upon Request)
+- Database Schema Dataset ([JSON](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing))
+- Foreign Key Detection Training Dataset ([CSV](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing), [Parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing))
 
 
 ## Crawler
@@ -35,11 +32,9 @@ It is Interesting to note is that there are no files >400 KB. Maybe GitHub does 
 
 The crawler performs the following three steps: 
 
-(1) crawl a list of URLs 
-
-(2) download files based on the list of URLs 
-
-(3) deduplicate the downloaded files based on their [sha256](https://docs.python.org/3/library/hashlib.html) hash 
+- (1) crawl a list of URLs 
+- (2) download files based on the list of URLs 
+- (3) deduplicate the downloaded files based on their [sha256](https://docs.python.org/3/library/hashlib.html) hash 
 
 
 ## SQL Parser
