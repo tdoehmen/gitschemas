@@ -1,4 +1,4 @@
-<div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="200"/></div>
+<div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="400"/></div>
 
 # Git Database Schema Dataset 
 
