@@ -15,7 +15,7 @@ def download_file(i, file_url):
 
 
 def download_files(sql_files):
-    Parallel(n_jobs=40, prefer="threads")(delayed(download_file)(i+665930, file_url) for i, file_url in
+    Parallel(n_jobs=40, prefer="threads")(delayed(download_file)(i, file_url) for i, file_url in
                                           enumerate(sql_files))
 
 if __name__ == '__main__':
