@@ -1,9 +1,11 @@
-# GitHub Database Schema Dataset
+<div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="200"/></div>
+
+# Git Database Schema Dataset 
 
 ## Introduction
 This repository contains scripts to crawl SQL-files from GitHub, parse them and extract structured database schema information from them. We do this, because we want to learn about the semantics of database tables in the wild (table names, column names, foreign key relations etc.). 
 
-Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and aling them with their concrete research objective.
+Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and align them with their concrete research objective.
 
 ## Download Links
 - GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
@@ -49,7 +51,7 @@ We tried different parsing options available in Python, including the libraries 
 
 `pglast` extracts an abstract syntax tree ([AST](https://pglast.readthedocs.io/en/v3/ast.html)) from the SQL script, which we ultimately translate to JSON to facilitate further analysis.
 
-Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. There are many different SQL dialects, and for not every dialect there is an open-source parser available. Therefore it does not seem feasible to simply trial-and-error all possible parsers/dialects. Creating a robust SQL parser which can extract schema information from SQL files, _without knowing which particular database system the query was written for_, could be an interesting project in an of itself. Any useful pointers regarding this are highly apprecited.
+Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. There are many different SQL dialects, and for not every dialect there is an open-source parser available. Therefore it does not seem feasible to simply trial-and-error all possible parsers/dialects. Creating a robust SQL parser which can extract schema information from SQL files, _without knowing which particular database system the query was written for_, could be an interesting project in and of itself. Any useful pointers regarding this are highly apprecited.
 
 ## Schema Data
 The parsing step results in a JSON file which looks as follows. The dataset can be downloaded [here](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing):
