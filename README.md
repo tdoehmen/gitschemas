@@ -7,9 +7,13 @@ Disclaimer: The dataset was created with research problems in the area of large 
 
 ## Download Links
 GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
+
 GitHub SQL Files Dataset (Upon Request)
+
 Database Schema Dataset ([JSON](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing))
+
 Foreign Key Detection Training Dataset ([CSV](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing), [Parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing))
+
 
 ## Crawler
 The GitHub SQL Crawler was built using the [GitHub Search API](https://docs.github.com/en/rest/reference/search). We search GitHub for SQL code that contains a CREATE TABLE and a FOREIGN KEY statement to make sure we retrieve SQL scripts which actually define a schema.
