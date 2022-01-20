@@ -75,39 +75,7 @@ def parse_url_info(metadata):
                 count += 1
                 if count % 10 == 0:
                     print(f"{count}/{len(metadata)}", end = "\r")
-
-def create_training_dataset(metadata):
-    columns = ["dataset", "table_name_a", "table_name_b", "columns_a", "columns_b", "primary_keys_a", "primary_keys_b", "key_a", "key_b"]
-    rows = []
-    for dataset in metadata.keys():
-        for table_name_a in metadata[dataset]["TABLES"].keys():
-            columns_a = [col[0] for col in metadata[dataset]["TABLES"][table_name_a]["COLUMNS"]]
-            for fks in metadata[dataset]["TABLES"][table_name_a]["FOREIGN_KEYS"]:
-                keys_a = fks["FOREIGN_KEY"]
-                keys_b = fks["REFERENCE_COLUMN"]
-                # skip composite keys
-                if len(keys_a) != 1 or len(keys_b) != 1:
-                    continue
-                key_a = keys_a[0]
-                key_b = keys_b[0]
-                table_name_b = fks["REFERENCE_TABLE"]
-                primary_keys_a = metadata[dataset]["TABLES"][table_name_a]["PRIMARY_KEYS"]
-                columns_b = []
-                primary_keys_b = []
-                if table_name_b in metadata[dataset]["TABLES"]:
-                    columns_b = [col[0] for col in metadata[dataset]["TABLES"][table_name_b]["COLUMNS"]]
-                    primary_keys_b = metadata[dataset]["TABLES"][table_name_b]["PRIMARY_KEYS"]
-                    # skip composite keys
-                    if len(primary_keys_a) > 1 or len(primary_keys_b) > 1:
-                        continue
-
-                primary_key_a = primary_keys_a[0] if len(primary_keys_a) != 0 else ""
-                primary_key_b = primary_keys_b[0] if len(primary_keys_b) != 0 else ""
-                row = [dataset, table_name_a, table_name_b, columns_a, columns_b, primary_key_a, primary_key_b, key_a, key_b]
-                rows.append(row)
-
-    return pd.DataFrame(rows, columns=columns)
-
+    
 if __name__ == "main":
 
     path = "../../data/sqlfiles/"
@@ -118,9 +86,6 @@ if __name__ == "main":
     with open(path+'../../data/metadata_postgres.json', 'w') as f:
         json.dump(metadata, f)
 
-    df = create_training_dataset(metadata)
-    df.to_csv("../../data/fk_detection_dataset.csv",index=False)
-    df.to_parquet("../../data/fk_detection_dataset.parquet")
 
 
 
