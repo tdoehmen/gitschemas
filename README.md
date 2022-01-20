@@ -1,4 +1,4 @@
-<div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="400"/></div>
+<div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="300"/></div>
 
 # Git Database Schema Dataset 
 
@@ -8,10 +8,12 @@ This repository contains scripts to crawl SQL-files from GitHub, parse them and 
 Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and align them with their concrete research objective.
 
 ## Download Links
-- GitHub SQL Files URL Dataset ([CSV](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing))
-- GitHub SQL Files Dataset (Upon Request)
-- Database Schema Dataset ([JSON](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing))
-- Foreign Key Detection Training Dataset ([CSV](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing), [Parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing))
+Samples, containing only data from repos with a permissive license like MIT, Apache-2.0, and CC0-1.0 will be available soon.
+
+- GitHub SQL Files URL Dataset (CSV)
+- GitHub SQL Files Dataset (ZIP)
+- Database Schema Dataset (JSON)
+- Foreign Key Detection Training Dataset (CSV, Parquet)
 
 
 ## Crawler
@@ -54,7 +56,7 @@ We tried different parsing options available in Python, including the libraries 
 Note: There should be quite some room for improvement in terms of the parsing success rate. E.g., backtick-quotes `` ` `` (MySQL-style) are incompatible with the postgres parser and currently lead to an immediate error. While something like this might be easy to solve with a search-and-replace, other issues are more intricate. There are many different SQL dialects, and for not every dialect there is an open-source parser available. Therefore it does not seem feasible to simply trial-and-error all possible parsers/dialects. Creating a robust SQL parser which can extract schema information from SQL files, _without knowing which particular database system the query was written for_, could be an interesting project in and of itself. Any useful pointers regarding this are highly apprecited.
 
 ## Schema Data
-The parsing step results in a JSON file which looks as follows. The dataset can be downloaded [here](https://drive.google.com/file/d/1WRW33SVOper7weXw5sIclsAU20szGoEP/view?usp=sharing):
+The parsing step results in a JSON file which looks as follows. A sample dataset can be downloaded (s. Download Links section):
 
 ```
 {'schema_000001':
@@ -119,11 +121,11 @@ The following section gives an overview of some of the properties of the dataset
 
 ![1b11d64f92e09062ba46306b84535370.png](imgs/1b11d64f92e09062ba46306b84535370.png)
 
-Apart from the raw JSON data, we derived a tabular data set particularly for the foreign key detection problem. The dataset contains only those tables, that have a non-composite-key foreign key relation to another table. For tables that have multiple foreign key relations, we added one line for every relation.  It has the following schema and can be downloaded as [csv](https://drive.google.com/file/d/1PQv8nDs-zZh04LHE7lPgWfBnmvcWvMFb/view?usp=sharing) and [parquet](https://drive.google.com/file/d/11wAVB1dt9YQGVcFtcrKDyhQGJR09QGAE/view?usp=sharing) file:
+Apart from the raw JSON data, we derived a tabular data set particularly for the foreign key detection problem. The dataset contains only those tables, that have a non-composite-key foreign key relation to another table. For tables that have multiple foreign key relations, we added one line for every relation.  It has the following schema and a sample can be downloaded as CSV or parquet file (s. Download Links section):
 
 |schema|table_name_a|table_name_b|columns_a|columns_b|primary_keys_a|primary_keys_b|key_a|key_b|
 |-------|------------|----|------|------|-------|--------|------|------|
-|000361_eventplanline.sql|eventplanline|resourcetbl|planno, lineno, locno, resno, timestart, time...||id|id|resno|resno|
-|000376_create_tables.derby.sql|db_category|db_category|id, name, parent_id|id, name, parent_id|id|id|parent_id|id|
+|000361_xxxx.sql|event|resourcetbl|planno, lineno, locno, resno, timestart, time...||id|id|resno|resno|
+|000376_yyyy.derby.sql|category|db_category|id, name, parent_id|id, name, parent_id|id|id|parent_id|id|
 
 total rows: 124605
