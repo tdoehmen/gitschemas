@@ -13,6 +13,7 @@ Samples, containing only data from repos with a permissive license like MIT, Apa
 
 - GitHub SQL Files URL Dataset (CSV)
 - GitHub SQL Files Dataset (ZIP)
+- GitDBSchemas (JSON; All Licenses)
 - Foreign Key Detection Training Dataset (CSV, Parquet)
 
 
