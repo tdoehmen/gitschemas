@@ -8,7 +8,7 @@ This repository contains scripts to crawl SQL-files from GitHub, parse them and 
 Disclaimer: The dataset was created with research problems in the area of large scale data integration in mind, such as foreign key detection, and CSV-header detection. For other use cases, we strongly encourage users to revisit the data collection, parsing and extraction methods and align them with their concrete research objective.
 
 ## Download Links
-Samples, containing only data from repos with a permissive license like MIT, Apache-2.0, and CC0-1.0 will be available soon.
+Samples, containing only data from repos with a permissive license like MIT, Apache-2.0, are available for direct download. We can provide other datasets for reproduction puposes upon request.
 
 - GitHub SQL Files URL Dataset (CSV)
 - GitHub SQL Files Dataset (ZIP)
