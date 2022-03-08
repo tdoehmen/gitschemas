@@ -1,7 +1,7 @@
 <div align="center"><img src="imgs/GH_DB.png" alt="Logo" width="300"/></div>
 
 ## Download Link
-***[GitDBSchemas (Permissive Licenses)](https://drive.google.com/file/d/1HwxeMQ7dym5md5igG2EBV0oPPR5Y0dAn/view?usp=sharing)***
+***[GitSchemas (Permissive Licenses)](https://drive.google.com/file/d/1HwxeMQ7dym5md5igG2EBV0oPPR5Y0dAn/view?usp=sharing)***
 
 ## Introduction
 This repository contains scripts to crawl SQL-files from GitHub, parse them and extract structured database schema information from them. We do this, because we want to learn about the semantics of database tables in the wild (table names, column names, foreign key relations etc.). 
@@ -13,7 +13,7 @@ Samples, containing only data from repos with a permissive license like MIT, Apa
 
 - GitHub SQL Files URL Dataset (CSV)
 - GitHub SQL Files Dataset (ZIP)
-- GitDBSchemas (JSON; All Licenses)
+- GitSchemas (JSON; All Licenses)
 - Foreign Key Detection Training Dataset (CSV, Parquet)
 
 
