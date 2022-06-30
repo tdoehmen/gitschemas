@@ -130,3 +130,18 @@ Apart from the raw JSON data, we derived a tabular data set particularly for the
 |000376_yyyy.derby.sql|category|db_category|id, name, parent_id|id, name, parent_id|id|id|parent_id|id|
 
 total rows: 124605
+
+## Publications
+
+[:page_facing_up: GitSchemas: A Dataset for Automating Relational Data Preparation Tasks](https://madelonhulsebos.github.io/assets/GitSchemas.pdf)
+
+```
+@inproceedings{gitschemas2022,
+  author    = {D{\"o}hmen, Till and Hulsebos, Madelon and Beecks, Christian and Schelter, Sebastian},
+  title     = {GitSchemas: A Dataset for Automating Relational Data Preparation Tasks},
+  year      = {2022},
+  maintitle = {ICDE 2022 – 38th IEEE International Conference on Data Engineering},
+  booktitle = {Workshop on Databases and Machine Learning (DBML)},
+  organization={IEEE}
+}
+```
