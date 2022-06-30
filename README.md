@@ -11,7 +11,7 @@ Disclaimer: The dataset was created with research problems in the area of large 
 ## Other Datasets
 Samples, containing only data from repos with a permissive license like MIT, Apache-2.0, are available for direct download above. We can provide other datasets for reproduction purposes upon request.
 
-- GitHub SQL Files URL Dataset (CSV)
+- [GitSchemas Raw SQL File URLs (CSV)](https://drive.google.com/file/d/1SIKG2Xn64LSOelXYQllGrRxlLX6tzJgi/view?usp=sharing)
 - GitHub SQL Files Dataset (ZIP)
 - GitSchemas (JSON; Full Dataset)
 - Foreign Key Detection Training Dataset (CSV, Parquet)
